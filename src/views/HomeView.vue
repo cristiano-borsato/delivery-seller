@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import SignInForm from '../components/SignInForm.vue'
+import SignUpForm from '../components/SignUpForm.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
+  <main style="display: flex">
+    <section style="flex: 1; margin-right: 10px">
+      <SignInForm />
+    </section>
+    <section style="flex: 1; margin-left: 10px">
+      <SignUpForm />
+    </section>
   </main>
 </template>
