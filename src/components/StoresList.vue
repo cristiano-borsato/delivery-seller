@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { Auth } from '../auth'
 
 const stores = ref([])
+const router = useRouter()
 
 onMounted(() => {
   const auth = new Auth()
@@ -18,13 +20,20 @@ onMounted(() => {
       stores.value = data
     })
 })
+
+function editStore(storeId: number) {
+  router.push({ path: `/stores/${storeId}/edit` })
+}
 </script>
 
 <template>
   <div>
     <h1>Stores List</h1>
     <ul>
-      <li v-for="store in stores" :key="store.id">{{ store.name }}</li>
+      <li v-for="store in stores" :key="store.id">
+        {{ store.name }}
+        <button @click="editStore(store.id)">Edit</button>
+      </li>
     </ul>
   </div>
 </template>

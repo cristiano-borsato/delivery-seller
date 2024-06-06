@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import StoreForm from '../components/StoreForm.vue'
 import StoresList from '@/components/StoresList.vue'
 import SignInForm from '@/components/SignInForm.vue'
+import EditStoreForm from '../components/EditStoreForm.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/stores',
       name: 'stores-list',
       component: StoresList
+    },
+    { 
+      path: '/stores/:id/edit',
+      name: 'stores/edit',
+      component: EditStoreForm 
     }
   ]
 })
