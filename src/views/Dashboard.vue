@@ -6,5 +6,7 @@ import UserProfile from '../components/UserProfile.vue'
 <template>
   <main>
     <UserProfile />
+    <RouterLink to="/stores/new">Create Store</RouterLink><br>
+    <RouterLink to="/stores">My Stores</RouterLink>
   </main>
 </template>

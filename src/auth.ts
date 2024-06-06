@@ -52,40 +52,78 @@ class Auth {
     andThen()
   }
 
+  // async signIn(
+  //   email: string,
+  //   password: string,
+  //   onSuccess: () => void,
+  //   onFailure: () => void) {
+  //   const body = {
+  //     login: {
+  //       email: email,
+  //       password: password
+  //     }
+  //   }
+  //   fetch("http://localhost:3000/sign_in", {
+  //     method: "POST",
+  //     headers: {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //       "X-API-KEY": X_API_KEY
+  //     },
+  //     body: JSON.stringify(body)
+  //   }).then((response) => {
+  //     if (response.ok) {
+  //       this.success(response, onSuccess)
+  //     } else {
+  //       this.failure(response, onFailure)
+  //     }
+  //   })
+  // }
+
   async signIn(
     email: string,
     password: string,
     onSuccess: () => void,
-    onFailure: () => void) {
+    onFailure: (error: string) => void // Adicionando um parâmetro para a mensagem de erro
+  ) {
     const body = {
       login: {
         email: email,
         password: password
       }
     }
-    fetch("http://localhost:3000/sign_in", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "X-API-KEY": X_API_KEY
-      },
-      body: JSON.stringify(body)
-    }).then((response) => {
+  
+    try {
+      const response = await fetch("http://localhost:3000/sign_in", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "X-API-KEY": X_API_KEY
+        },
+        body: JSON.stringify(body)
+      });
+  
       if (response.ok) {
         this.success(response, onSuccess)
       } else {
-        this.failure(response, onFailure)
+        const data = await response.json();
+        onFailure(data.error || "Erro ao tentar fazer login"); // Passando a mensagem de erro para o callback onFailure
       }
-    })
+    } catch (error) {
+      console.error("Erro ao fazer a requisição:", error);
+      onFailure("Erro ao tentar fazer login");
+    }
   }
-
+  
+ 
   async signUp(
     email: string,
     password: string,
     password_confirmation: string,
     onSuccess: () => void,
-    onFailure: () => void) {
+    onFailure: (error: string) => void
+  ) {
     const body = {
       user: {
         email: email,
@@ -93,22 +131,30 @@ class Auth {
         password_confirmation: password_confirmation,
       }
     }
-    await fetch("http://localhost:3000/new", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "X-API-KEY": X_API_KEY
-      },
-      body: JSON.stringify(body)
-    }).then((response) => {
+  
+    try {
+      const response = await fetch("http://localhost:3000/new", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "X-API-KEY": X_API_KEY
+        },
+        body: JSON.stringify(body)
+      });
+  
       if (response.ok) {
-        this.success(response, onSuccess)
+        this.success(response, onSuccess);
       } else {
-        this.failure(response, onFailure)
+        const data = await response.json();
+        onFailure(data.error || "Erro ao tentar criar o usuário");
       }
-    })
+    } catch (error) {
+      console.error("Erro ao fazer a requisição:", error);
+      onFailure("Erro ao tentar criar o usuário");
+    }
   }
+  
 
 }
 export { Auth }

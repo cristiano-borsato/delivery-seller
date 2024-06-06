@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { Auth } from '../auth'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import SignUpForm from '../components/SignUpForm.vue'
 
+const router = useRouter()
 const auth = new Auth()
 const isLoggedIn = ref(auth.isLoggedIn())
 const currentUser = ref(auth.currentUser())
 
 const signOut = function () {
-  auth.signOut(() => (isLoggedIn.value = auth.isLoggedIn()))
+  auth.signOut(() => {
+    isLoggedIn.value = auth.isLoggedIn()
+    router.push('/') 
+  })
 }
 </script>
 
@@ -21,11 +27,13 @@ const signOut = function () {
       </nav>
     </template>
 
-    <template v-else>
-      <h3>Please log in to have access</h3>
-      <br />
-      <nav>
-        <RouterLink :to="{ name: 'home' }"> Sign In </RouterLink>
+    <template v-else>      
+      <SignUpForm />
+      <br /><br>
+            
+      <nav>        
+        <h2>Já têm uma conta?</h2>
+        <RouterLink to="/signin">Entrar</RouterLink>
       </nav>
     </template>
   </main>

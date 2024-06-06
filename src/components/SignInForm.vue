@@ -8,9 +8,10 @@ const awaiting = ref(false)
 const email = defineModel<string>('email')
 const password = defineModel<string>('password')
 const remember = defineModel<boolean>('remember', { default: true })
+const error = ref<string | null>(null) // Adicione uma variável reativa para armazenar a mensagem de erro
 
-function onSubmit(form: Event) {
-  let auth = new Auth(remember.value)
+const onSubmit = (form: Event) => {
+  const auth = new Auth(remember.value)
   awaiting.value = true
   auth.signIn(
     email.value || '',
@@ -19,9 +20,9 @@ function onSubmit(form: Event) {
       awaiting.value = false
       router.push('/dashboard')
     },
-    () => {
+    (errorMsg: string) => { // Adicione um parâmetro para a mensagem de erro
       awaiting.value = false
-      console.log('não foi dessa vez!')
+      error.value = errorMsg // Armazene a mensagem de erro na variável error
     }
   )
 }
@@ -29,7 +30,7 @@ function onSubmit(form: Event) {
 
 <template>
   <div>
-    <h1>Sign In</h1>
+    <h1>Entrar</h1>
     <form @submit.prevent="onSubmit">
       <label>E-Mail: </label>
       <input v-model="email" type="email" /><br />
@@ -37,7 +38,8 @@ function onSubmit(form: Event) {
       <input v-model="password" type="password" /><br />
       <label>Remember Me: </label>
       <input v-model="remember" type="checkbox" /><br />
-      <button type="submit" v-show="!awaiting">Sign In</button>
+      <button type="submit" v-show="!awaiting">Avançar</button>
     </form>
+    <p v-if="error">{{ error }}</p> <!-- Exibir a mensagem de erro -->
   </div>
 </template>

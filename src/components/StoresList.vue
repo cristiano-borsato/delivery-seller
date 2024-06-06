@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { Auth } from '../auth'
+
+const stores = ref([])
+
+onMounted(() => {
+  const auth = new Auth()
+  fetch('http://localhost:3000/stores', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${auth.getFallback('token')}`
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      stores.value = data
+    })
+})
+</script>
+
+<template>
+  <div>
+    <h1>Stores List</h1>
+    <ul>
+      <li v-for="store in stores" :key="store.id">{{ store.name }}</li>
+    </ul>
+  </div>
+</template>
