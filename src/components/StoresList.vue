@@ -8,6 +8,7 @@ const router = useRouter()
 
 onMounted(() => {
   const auth = new Auth()
+  
   fetch('http://localhost:3000/stores', {
     method: 'GET',
     headers: {
@@ -24,6 +25,11 @@ onMounted(() => {
 function editStore(storeId: number) {
   router.push({ path: `/stores/${storeId}/edit` })
 }
+
+function viewDetails(storeId: number) {
+  router.push({ path: `/stores/${storeId}/products` })
+}
+
 </script>
 
 <template>
@@ -33,6 +39,7 @@ function editStore(storeId: number) {
       <li v-for="store in stores" :key="store.id">
         {{ store.name }}
         <button @click="editStore(store.id)">Edit</button>
+        <button @click="viewDetails(store.id)">Detalhes</button>
       </li>
     </ul>
   </div>
