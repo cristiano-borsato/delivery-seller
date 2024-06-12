@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Dashboard from '../views/Dashboard.vue'
 import StoreForm from '../components/StoreForm.vue'
 import StoresList from '@/components/StoresList.vue'
 import SignInForm from '@/components/SignInForm.vue'
 import EditStoreForm from '../components/EditStoreForm.vue'
 import StoreProducts from '../components/StoreProducts.vue'
+import EditProduct from '../components/EditProduct.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,12 +19,7 @@ const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: SignInForm
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard
-    },
+    },   
     {
       path: '/stores/new',
       name: 'store-form',
@@ -44,6 +39,11 @@ const router = createRouter({
       path: '/stores/:storeId/products',
       name: 'StoreProducts',
       component: StoreProducts
+    },
+    {
+      path: '/stores/:storeId/products/:productId/edit',
+      name: 'EditProduct',
+      component: EditProduct
     }
     
   ]

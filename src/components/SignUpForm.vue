@@ -21,7 +21,8 @@ const onSubmit = () => {
     password_confirmation.value || '',
     () => {
       awaiting.value = false
-      router.push('/dashboard')
+      router.push('/')
+      window.location.reload()
     },
     (errorMessage) => {
       awaiting.value = false
@@ -41,7 +42,7 @@ const onSubmit = () => {
       <label><p>Senha:</p> </label>
       <input v-model="password" type="password" /><br />
       <label><p>Confirmar Senha:</p></label>
-      <input v-model="password_confirmation" type="password_confirmation" /><br />
+      <input v-model="password_confirmation" type="password" /><br />
       <button type="submit" v-show="!awaiting">Criar Conta</button>
     </form>
   </div>

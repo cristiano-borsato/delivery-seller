@@ -30,10 +30,15 @@ onMounted(() => {
 function goBack() {
   router.push('/stores')
 }
+
+function editProduct(productId: number) {
+  const storeId = route.params.storeId
+  router.push({ name: 'EditProduct', params: { storeId, productId } })
+}
 </script>
 
 
-<template>
+<!-- <template>
   <div>
     <h1>Products in {{ storeName }}</h1>
     <ul>
@@ -44,9 +49,19 @@ function goBack() {
     <br>
     <button @click="goBack">Back to Stores</button>
   </div>
+</template> -->
+
+<template>
+  <div>
+    <h1>Products in {{ storeName }}</h1>
+    <ul>
+      <li v-for="product in products" :key="product.id">
+        {{ product.title }} - {{ product.price }}
+        <button @click="editProduct(product.id)">Edit</button>
+      </li>
+    </ul>
+    <br>
+    <button @click="goBack">Back to Stores</button>
+  </div>
 </template>
 
-
-<style scoped>
-/* Adicione estilos se necessário */
-</style>

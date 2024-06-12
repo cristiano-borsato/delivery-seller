@@ -22,9 +22,11 @@ const signOut = function () {
     <template v-if="isLoggedIn">
       <h3>Hi, {{ currentUser && currentUser.email }}</h3>
       <br />
-      <nav>
-        <a @click="signOut">Sign Out</a>
-      </nav>
+      <nav>        
+        <p><a @click="signOut" style="cursor: pointer;">Sign Out</a></p>
+        <p><RouterLink to="/stores/new">Create Store</RouterLink></p>
+        <p><RouterLink to="/stores">My Stores</RouterLink></p>
+      </nav>      
     </template>
 
     <template v-else>      
@@ -38,3 +40,5 @@ const signOut = function () {
     </template>
   </main>
 </template>
+
+

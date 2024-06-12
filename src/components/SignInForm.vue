@@ -18,7 +18,7 @@ const onSubmit = (form: Event) => {
     password.value || '',
     () => {
       awaiting.value = false
-      router.push('/dashboard')
+      router.push('/')
     },
     (errorMsg: string) => { // Adicione um parâmetro para a mensagem de erro
       awaiting.value = false

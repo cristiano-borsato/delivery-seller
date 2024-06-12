@@ -5,6 +5,6 @@
 
 <template>
   <main>
-    <UserProfile />
+    <UserProfile />    
   </main>
 </template>
