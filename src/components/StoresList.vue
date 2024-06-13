@@ -30,6 +30,10 @@ function viewDetails(storeId: number) {
   router.push({ path: `/stores/${storeId}/products` })
 }
 
+function createProduct(storeId: number) {
+  router.push({ path: `/stores/${storeId}/products/new` })
+}
+
 </script>
 
 <template>
@@ -40,7 +44,10 @@ function viewDetails(storeId: number) {
         {{ store.name }}
         <button @click="editStore(store.id)">Edit</button>
         <button @click="viewDetails(store.id)">Detalhes</button>
+        <button @click="createProduct(store.id)">Criar Produto</button>
       </li>
     </ul>
+    <p><RouterLink to="/">Home</RouterLink></p>
   </div>
+  
 </template>

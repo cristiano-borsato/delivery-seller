@@ -53,5 +53,7 @@ function onSubmit() {
       <input v-model="storeName" type="text" required /><br />
       <button type="submit" v-show="!awaiting">Create Store</button>
     </form>
+    <p><RouterLink to="/">Home</RouterLink></p>
   </div>
+  
 </template>

@@ -6,6 +6,7 @@ import SignInForm from '@/components/SignInForm.vue'
 import EditStoreForm from '../components/EditStoreForm.vue'
 import StoreProducts from '../components/StoreProducts.vue'
 import EditProduct from '../components/EditProduct.vue'
+import NewProduct from '../components/NewProduct.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/stores/:storeId/products/:productId/edit',
       name: 'EditProduct',
       component: EditProduct
+    },
+    {
+      path: '/stores/:storeId/products/new',
+      name: 'NewProduct',
+      component: NewProduct
     }
     
   ]

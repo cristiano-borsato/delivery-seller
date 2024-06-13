@@ -7,10 +7,10 @@ const products = ref([])
 const storeName = ref('')
 const router = useRouter()
 const route = useRoute()
+const storeId = route.params.storeId
 
 onMounted(() => {
   const auth = new Auth()
-  const storeId = route.params.storeId
 
   fetch(`http://localhost:3000/stores/${storeId}/products`, {
     method: 'GET',
@@ -21,7 +21,7 @@ onMounted(() => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data)
       storeName.value = data.store.name
       products.value = data.products
     })
@@ -32,24 +32,13 @@ function goBack() {
 }
 
 function editProduct(productId: number) {
-  const storeId = route.params.storeId
   router.push({ name: 'EditProduct', params: { storeId, productId } })
 }
+
+function createProduct() {
+  router.push({ name: 'NewProduct', params: { storeId } })
+}
 </script>
-
-
-<!-- <template>
-  <div>
-    <h1>Products in {{ storeName }}</h1>
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        {{ product.title }} - {{ product.price }}
-      </li>
-    </ul>
-    <br>
-    <button @click="goBack">Back to Stores</button>
-  </div>
-</template> -->
 
 <template>
   <div>
@@ -62,6 +51,6 @@ function editProduct(productId: number) {
     </ul>
     <br>
     <button @click="goBack">Back to Stores</button>
+    <button @click="createProduct">Create Product</button>
   </div>
 </template>
-

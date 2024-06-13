@@ -21,8 +21,7 @@ const onSubmit = () => {
     password_confirmation.value || '',
     () => {
       awaiting.value = false
-      router.push('/')
-      window.location.reload()
+      router.push('/signin')
     },
     (errorMessage) => {
       awaiting.value = false

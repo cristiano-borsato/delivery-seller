@@ -24,7 +24,7 @@ const signOut = function () {
       <br />
       <nav>        
         <p><a @click="signOut" style="cursor: pointer;">Sign Out</a></p>
-        <p><RouterLink to="/stores/new">Create Store</RouterLink></p>
+        <p><RouterLink to="/stores/new">Create Store</RouterLink></p>        
         <p><RouterLink to="/stores">My Stores</RouterLink></p>
       </nav>      
     </template>
