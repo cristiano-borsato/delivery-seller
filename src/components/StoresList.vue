@@ -41,7 +41,7 @@ function createProduct(storeId: number) {
     <h1>Stores List</h1>
     <ul>
       <li v-for="store in stores" :key="store.id">
-        {{ store.name }}
+        {{ store.name }} - {{ store.id }}
         <button @click="editStore(store.id)">Edit</button>
         <button @click="viewDetails(store.id)">Detalhes</button>
         <button @click="createProduct(store.id)">Criar Produto</button>

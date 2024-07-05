@@ -38,8 +38,7 @@ onMounted(() => {
     }
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log('Product data:', data) // Adicione esta linha para depuração
+    .then((data) => {      
       product.value = data
     })
     .catch((error) => {
@@ -67,8 +66,7 @@ function updateProduct() {
     body: JSON.stringify({ product: updatedProduct }) // Use o objeto atualizado aqui
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log('Update response:', data)
+    .then((data) => {      
       alert('Product updated successfully!')
       router.push(`/stores/${storeId}/products`)
     })

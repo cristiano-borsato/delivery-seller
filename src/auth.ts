@@ -1,5 +1,5 @@
 import { createStorage, type SimpleStorage } from './storage'
-const X_API_KEY = "EXsGyNRWroZsxpODkuIPMcC0ZzY="
+export const X_API_KEY = "EXsGyNRWroZsxpODkuIPMcC0ZzY="
 
 class Auth {
   private storage: SimpleStorage

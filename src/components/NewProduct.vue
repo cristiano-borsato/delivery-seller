@@ -32,8 +32,7 @@ function createProduct() {
     body: JSON.stringify({ product: newProduct })
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log('Create response:', data)
+    .then((data) => {      
       alert('Product created successfully!')
       router.push(`/stores/${storeId}/products`)
     })

@@ -20,8 +20,7 @@ onMounted(() => {
     }
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
+    .then((data) => {      
       storeName.value = data.store.name
       products.value = data.products
     })
