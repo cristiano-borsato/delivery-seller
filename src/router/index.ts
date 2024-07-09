@@ -53,11 +53,10 @@ const router = createRouter({
       component: NewProduct
     },
     {
-      path: '/waiting',
-      name: 'Waiting',
+      path: '/stores/:storeId/orders',
+      name: 'StoreOrders',
       component: Waiting
-    }
-    
+    }    
   ]
 })
 

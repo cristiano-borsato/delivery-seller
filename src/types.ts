@@ -1,4 +1,6 @@
 export interface Order {
   id: number,
-  createdAt: Date
+  createdAt: Date,
+  state: string
 }
+

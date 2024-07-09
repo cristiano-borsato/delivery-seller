@@ -9,6 +9,6 @@ defineProps<{
 
 <template>
   <main>
-    <h2>Order {{order?.id}} [{{order?.createdAt.toLocaleDateString()}}]</h2>
+    <h2>Order {{order?.id}} [{{order?.createdAt.toLocaleDateString()}}] {{order?.state}}</h2>
   </main>
 </template>
